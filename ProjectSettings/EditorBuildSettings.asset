@@ -6,9 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/EnteranceScreen.unity
+    guid: c3315490b5d9dc74180b70c0fc8ec8a1
+  - enabled: 1
+    path: Assets/Scenes/OptionMenu.unity
+    guid: dd65c59a580c63d44a1a25b294ff3e61
+  - enabled: 1
     path: Assets/Scenes/Lobby.unity
     guid: 30e99f95abf72054393865f12f6c631b
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/hassan/Scenes/LobbyScene.unity
+    guid: 7b5de4da9d23010418ad8115cfd71890
+  - enabled: 1
+    path: Assets/Scenes/Play.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/campaignScene.unity
+    guid: d5d288e2076b82a4ea90eccec0651bf0
   m_configObjects: {}

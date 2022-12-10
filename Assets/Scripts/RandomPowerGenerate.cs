@@ -33,7 +33,7 @@ public class RandomPowerGenerate : NetworkBehaviour
             SpawnObject();
         }
 
-        spawnPos = new Vector2(Random.Range(-10, 10), 4);
+        spawnPos = new Vector2(Random.Range(-15, 15), 6);
         randomNum = Random.Range(0,buff.Length);
     }
 

@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerShoot : NetworkBehaviour
 {
     private float shootSpeed = 900, shootTime = 5, ammoCount = 1000, readyForNextShoot = 0, defaultShootTime;
-    private float damageMultiplier = 0.75f, defaultDamageMultiplier;
+    
     [SerializeField] private Transform shootPos;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Animator animator;
@@ -15,12 +15,12 @@ public class PlayerShoot : NetworkBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private GameObject playerInfo;
 
-    private Coroutine shootTimeCoroutine , damageMultiplierCoroutine; 
+    private Coroutine shootTimeCoroutine ; 
 
     // Start is called before the first frame update
     private void Start()
     {
-        defaultDamageMultiplier = damageMultiplier;
+        
         defaultShootTime = shootTime;
     }
     // Update is called once per frame
@@ -76,9 +76,9 @@ public class PlayerShoot : NetworkBehaviour
             playerMovement.Recoil();
 
 
-            playerInfo.GetComponent<PlayerMovement>().SetPlayerDamageMultiplier(damageMultiplier) ;
+            //playerInfo.GetComponent<PlayerMovement>().SetPlayerDamageMultiplier(damageMultiplier) ;
 
-            Debug.Log(GetDamageMultiplier());
+            //Debug.Log(GetDamageMultiplier());
             /*velocity.x = thrust * directionRgb();
             rgb.velocity = velocity;*/
             if (bulletSparkle != null)
@@ -100,15 +100,7 @@ public class PlayerShoot : NetworkBehaviour
         shootTime = defaultShootTime;
         shootTimeCoroutine = null;
     }
-    IEnumerator ExtraDamage()
-    {
-        float timer = 100f;
-        damageMultiplier = defaultDamageMultiplier * 50;
-        Debug.Log(damageMultiplier);
-        yield return new WaitForSeconds(timer);
-        damageMultiplier = defaultDamageMultiplier;
-        damageMultiplierCoroutine = null;
-    }
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("FireRate2x"))
@@ -120,19 +112,11 @@ public class PlayerShoot : NetworkBehaviour
             shootTimeCoroutine = StartCoroutine(FireRate2x());
             Destroy(collision.gameObject);
         }
-        if (collision.gameObject.CompareTag("ExtraDamage"))
-        {
-            if (damageMultiplierCoroutine != null)
-            {
-                StopCoroutine(damageMultiplierCoroutine);
-            }
-            damageMultiplierCoroutine = StartCoroutine(ExtraDamage());
-            Destroy(collision.gameObject);
-        }
+        
     }
-    public float GetDamageMultiplier()
+    /* float GetDamageMultiplier()
     {
         return damageMultiplier;
-    }
+    }*/
 }
 

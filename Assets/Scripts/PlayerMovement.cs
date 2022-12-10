@@ -10,12 +10,13 @@ public class PlayerMovement : NetworkBehaviour
     private bool doubleJump;
     private bool isFalling;
     private float thrustMultiplier = 0.5f;
+    private float damageMultiplier = 0.75f, defaultDamageMultiplier;
     private Vector2 thrust;
     private float horizontalInput;
     float speed = 4f, defaultSpeed;
-    private Coroutine speedUpCoroutine;
+    private Coroutine speedUpCoroutine, damageMultiplierCoroutine;
 
-    private float playerDamageMultiplier;
+    //private float playerDamageMultiplier;
 
     [SerializeField] private LayerMask groundCheckLayers;
     [SerializeField] private float groundCheckRaycastLength;
@@ -29,6 +30,7 @@ public class PlayerMovement : NetworkBehaviour
     void Start()
     {
         rgb = GetComponent<Rigidbody2D>();
+        defaultDamageMultiplier = damageMultiplier;
         defaultSpeed = speed;
         
         isLookingRight.OnValueChanged += OnIsLookingRightChanged;
@@ -120,7 +122,16 @@ public class PlayerMovement : NetworkBehaviour
             //currentGameObject = collision.gameObject;
             Damage(collision);
         }
-        if(collision.gameObject.CompareTag("SpeedUp"))
+        if (collision.gameObject.CompareTag("ExtraDamage"))
+        {
+            if (damageMultiplierCoroutine != null)
+            {
+                StopCoroutine(damageMultiplierCoroutine);
+            }
+            damageMultiplierCoroutine = StartCoroutine(ExtraDamage());
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("SpeedUp"))
         {
             if(speedUpCoroutine != null)
             {
@@ -131,7 +142,7 @@ public class PlayerMovement : NetworkBehaviour
         }
         
     }
-
+    
     /*private void OnCollisionExit2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Bullet"))
@@ -184,8 +195,7 @@ public class PlayerMovement : NetworkBehaviour
         {
             direction = -1;
         }
-        Debug.Log("movement script" + playerDamageMultiplier);
-        thrust.x += playerDamageMultiplier * 2 * direction;
+        thrust.x += damageMultiplier * 2 * direction;
         //velocity.x = Mathf.MoveTowards(thrust * 10, 0, Time.deltaTime);
         //rgb.velocity = velocity;
     }
@@ -194,7 +204,7 @@ public class PlayerMovement : NetworkBehaviour
     {
         float vecLength = Mathf.Pow(vec.magnitude * 5 + 1, 1.5f); //balanced
         vec = vec.normalized;
-        thrust += playerDamageMultiplier * vec / vecLength * 147;
+        thrust += damageMultiplier * vec / vecLength * 147;
         Debug.Log("vecLength " + vecLength);
     }
 
@@ -206,8 +216,18 @@ public class PlayerMovement : NetworkBehaviour
         speed = defaultSpeed;
         speedUpCoroutine = null;
     }
-  
-    private float GetPlayerDamageMultiplier()
+
+    IEnumerator ExtraDamage()
+    {
+        float timer = 2f;
+        damageMultiplier = defaultDamageMultiplier * 2;
+        Debug.Log(damageMultiplier);
+        yield return new WaitForSeconds(timer);
+        damageMultiplier = defaultDamageMultiplier;
+        damageMultiplierCoroutine = null;
+    }
+
+    /*private float GetPlayerDamageMultiplier()
     {
         return playerDamageMultiplier;
     }
@@ -215,7 +235,7 @@ public class PlayerMovement : NetworkBehaviour
     public void SetPlayerDamageMultiplier(float PlayerDamageMultiplier)
     {
         playerDamageMultiplier = PlayerDamageMultiplier;
-    }
+    }*/
 
 }
 
