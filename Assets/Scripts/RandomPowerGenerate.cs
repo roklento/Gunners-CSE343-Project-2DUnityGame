@@ -13,6 +13,10 @@ public class RandomPowerGenerate : NetworkBehaviour
     private int randomNum;
     private GameObject randomGameObject;
 
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner) return;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +49,7 @@ public class RandomPowerGenerate : NetworkBehaviour
 
         GameObject spawnedObject = Instantiate(randomGameObject, spawnPos, Quaternion.identity);
         spawnedObject.GetComponent<NetworkObject>().Spawn(true);
+        Destroy(spawnedObject, 5f);
     }
 
     void SetRandomTime()

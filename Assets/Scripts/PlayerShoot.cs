@@ -15,9 +15,12 @@ public class PlayerShoot : NetworkBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private GameObject playerInfo;
 
-    private Coroutine shootTimeCoroutine ; 
+    private Coroutine shootTimeCoroutine ;
 
-    // Start is called before the first frame update
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner) return;
+    }
     private void Start()
     {
         

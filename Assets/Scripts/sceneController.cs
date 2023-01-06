@@ -11,10 +11,6 @@ public class sceneController : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Play");
     }
-    public void LoadLobbyScreen()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("LobbyScene");
-    }
     public void LoadStartScreen()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("EnteranceScreen");

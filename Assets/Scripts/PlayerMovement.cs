@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : NetworkBehaviour
 {
+    public static PlayerMovement Instance { get; private set; }
     private Rigidbody2D rgb;
     private Vector2 velocity;
     private bool doubleJump;
@@ -17,10 +18,14 @@ public class PlayerMovement : NetworkBehaviour
     private Coroutine speedUpCoroutine, damageMultiplierCoroutine;
 
     //private float playerDamageMultiplier;
-
+    
     [SerializeField] private LayerMask groundCheckLayers;
     [SerializeField] private float groundCheckRaycastLength;
-
+    
+    private void Awake()
+    {
+        Instance = this;
+    }
     private NetworkVariable<bool> isLookingRight = new NetworkVariable<bool>(true, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     // Start is called before the first frame update
     public override void OnNetworkSpawn()
@@ -54,6 +59,7 @@ public class PlayerMovement : NetworkBehaviour
     void Update()
     {
         if (!IsOwner) return;
+
         float jumpingSpeed = 6f;
 
         velocity = rgb.velocity;  
@@ -236,6 +242,8 @@ public class PlayerMovement : NetworkBehaviour
     {
         playerDamageMultiplier = PlayerDamageMultiplier;
     }*/
+
+
 
 }
 

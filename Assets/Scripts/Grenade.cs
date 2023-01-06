@@ -16,6 +16,10 @@ public class Grenade : NetworkBehaviour
     {
         //explosionAnim = GetComponent<Animator>();
     }
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner) return;
+    }
     // Update is called once per frame
     void Update()
     {

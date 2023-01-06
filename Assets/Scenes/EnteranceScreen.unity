@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4897441069577582326, guid: c4635c0bef01a0941bca3195ca2bde48, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLobbyScreen
+      value: LoadPlayScreen
       objectReference: {fileID: 0}
     - target: {fileID: 4897441069577582326, guid: c4635c0bef01a0941bca3195ca2bde48, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

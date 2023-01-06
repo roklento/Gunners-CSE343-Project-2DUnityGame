@@ -10,6 +10,7 @@ TagManager:
   - FireRate2x
   - SpeedUp
   - ExtraDamage
+  - Death
   layers:
   - Default
   - TransparentFX

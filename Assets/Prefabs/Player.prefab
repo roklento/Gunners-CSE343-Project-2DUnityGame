@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: -2929163027418437801}
   - component: {fileID: -8087620029739547993}
   - component: {fileID: -7081249291627921155}
+  - component: {fileID: -6170426347898789036}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -191,7 +192,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93724eb35582a2643b0bba3805dece72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDamageMultiplier: {fileID: 2361788345727023870}
   groundCheckLayers:
     serializedVersion: 2
     m_Bits: 55
@@ -363,3 +363,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80d7c879794dfda4687da0e400131852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6170426347898789036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2361788345727023870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f039ef42c44c5de4796ade8afa71754b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lives: 3
