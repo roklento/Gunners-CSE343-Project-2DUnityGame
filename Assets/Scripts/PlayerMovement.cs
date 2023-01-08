@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMovement : NetworkBehaviour
 {
@@ -18,10 +19,10 @@ public class PlayerMovement : NetworkBehaviour
     private Coroutine speedUpCoroutine, damageMultiplierCoroutine;
 
     //private float playerDamageMultiplier;
-    
+
     [SerializeField] private LayerMask groundCheckLayers;
     [SerializeField] private float groundCheckRaycastLength;
-    
+
     private void Awake()
     {
         Instance = this;
@@ -40,6 +41,7 @@ public class PlayerMovement : NetworkBehaviour
         
         isLookingRight.OnValueChanged += OnIsLookingRightChanged;
         OnIsLookingRightChanged(false, isLookingRight.Value);
+
     }
 
     private void OnIsLookingRightChanged(bool oldValue, bool newValue)
@@ -227,7 +229,6 @@ public class PlayerMovement : NetworkBehaviour
     {
         float timer = 2f;
         damageMultiplier = defaultDamageMultiplier * 2;
-        Debug.Log(damageMultiplier);
         yield return new WaitForSeconds(timer);
         damageMultiplier = defaultDamageMultiplier;
         damageMultiplierCoroutine = null;
@@ -242,7 +243,6 @@ public class PlayerMovement : NetworkBehaviour
     {
         playerDamageMultiplier = PlayerDamageMultiplier;
     }*/
-
 
 
 }

@@ -64,7 +64,7 @@ namespace SA.Foundation.Editor
         // Static Methods
         //--------------------------------------
 
-        public static T ShowModal() {
+        public static new T ShowModal() {
             T window = EditorWindow.GetWindow<T>(true);
 
             window.minSize = new Vector2(700f, 560f);

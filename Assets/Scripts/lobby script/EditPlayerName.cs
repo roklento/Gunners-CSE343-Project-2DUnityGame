@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +16,7 @@ public class EditPlayerName : MonoBehaviour {
 
 
     private string playerName = "GUNNERS";
+
 
 
     private void Awake() {
@@ -42,6 +41,7 @@ public class EditPlayerName : MonoBehaviour {
 
     private void Start() {
         OnNameChanged += EditPlayerName_OnNameChanged;
+        
     }
 
     private void EditPlayerName_OnNameChanged(object sender, EventArgs e) {

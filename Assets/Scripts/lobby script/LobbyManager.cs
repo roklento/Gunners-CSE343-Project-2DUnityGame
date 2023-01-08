@@ -54,7 +54,7 @@ public class LobbyManager : MonoBehaviour {
     private float lobbyPollTimer;
     private float refreshLobbyListTimer = 5f;
     private Lobby joinedLobby;
-    private string playerName;
+    public string playerName;
 
 
     private void Awake() {
@@ -164,7 +164,7 @@ public class LobbyManager : MonoBehaviour {
         return false;
     }
 
-    private Player GetPlayer() {
+    public Player GetPlayer() {
         return new Player(AuthenticationService.Instance.PlayerId, null, new Dictionary<string, PlayerDataObject> {
             { KEY_PLAYER_NAME, new PlayerDataObject(PlayerDataObject.VisibilityOptions.Public, playerName) },
             { KEY_PLAYER_CHARACTER, new PlayerDataObject(PlayerDataObject.VisibilityOptions.Public, PlayerCharacter.Marine.ToString()) }

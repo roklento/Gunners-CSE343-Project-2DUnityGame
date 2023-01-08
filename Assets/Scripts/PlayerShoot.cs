@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
 
 public class PlayerShoot : NetworkBehaviour
 {
-    private float shootSpeed = 900, shootTime = 5, ammoCount = 1000, readyForNextShoot = 0, defaultShootTime;
+    private float shootSpeed = 900, shootTime = 5, ammoCount = 5, tempAmmoCount, readyForNextShoot = 0, defaultShootTime, reloadtimer = 2f;
     
     [SerializeField] private Transform shootPos;
     [SerializeField] private GameObject bullet;
@@ -15,7 +16,10 @@ public class PlayerShoot : NetworkBehaviour
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private GameObject playerInfo;
 
-    private Coroutine shootTimeCoroutine ;
+    private Coroutine shootTimeCoroutine;
+    private Coroutine ammoCountCoroutine;
+
+    public TextMeshProUGUI ammoMesh;
 
     public override void OnNetworkSpawn()
     {
@@ -23,38 +27,56 @@ public class PlayerShoot : NetworkBehaviour
     }
     private void Start()
     {
-        
+        ammoMesh = GameObject.Find("Canvas/AMMOCOUNT").GetComponent<TextMeshProUGUI>();
+        tempAmmoCount = ammoCount;
         defaultShootTime = shootTime;
     }
     // Update is called once per frame
     void Update()
     {
         if (!IsOwner)  return;
-        if (Input.GetButton("Fire1"))
+
+        if (ammoCount > -1)
         {
-            if(Time.time > readyForNextShoot)
+            ammoMesh.text = ammoCount.ToString();
+        }
+        if (ammoCount == 0)
+        {
+            if(ammoCountCoroutine != null)
+            {
+                StopCoroutine(ammoCountCoroutine);
+            }
+            ammoCountCoroutine = StartCoroutine(Reload());
+        }
+        
+        if (Input.GetButton("Fire1") )
+        {
+            if (Time.time > readyForNextShoot)
             {
                 var dir = transform.localRotation.y;
                 readyForNextShoot = Time.time + 1 / shootTime;
-                RequestFireServerRpc(dir);
+                --ammoCount;
+                RequestFireServerRpc(dir, ammoCount);
             }
+
         }
+
     }
 
     [ServerRpc]
-    private void RequestFireServerRpc(float dir)
+    private void RequestFireServerRpc(float dir,float ammo)
     {
-        RequestFireClientRpc(dir);
+        RequestFireClientRpc(dir,ammo);
     }
 
     [ClientRpc]
-    private void RequestFireClientRpc(float dir)
+    private void RequestFireClientRpc(float dir,float ammo)
     {
-        Shoot(dir);
+        Shoot(dir,ammo);
     }
-    void Shoot(float dir)
+    void Shoot(float dir,float ammo)
     {
-        if(ammoCount > 0)
+        if(ammo >= 0)
         {
             int direction(float dir)  
             {
@@ -68,8 +90,6 @@ public class PlayerShoot : NetworkBehaviour
                 }
                     
             }
-            
-            ammoCount--;
 
             GameObject newBullet = Instantiate(bullet, shootPos.position, Quaternion.identity);
 
@@ -121,5 +141,11 @@ public class PlayerShoot : NetworkBehaviour
     {
         return damageMultiplier;
     }*/
+    IEnumerator Reload()
+    {
+        yield return new WaitForSeconds(reloadtimer);
+        ammoCount = tempAmmoCount;
+        ammoCountCoroutine = null;
+    }
 }
 
