@@ -2218,7 +2218,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1121479760}
-  - component: {fileID: 1121479759}
+  - component: {fileID: 1121479761}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -2226,18 +2226,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1121479759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1121479758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 119128c642b60eb42b04f2fa1af0b77e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1121479760
 Transform:
   m_ObjectHideFlags: 0
@@ -2253,6 +2241,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1121479761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121479758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e4cf7560ef50ac4c9653293f7141e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1126151784
 GameObject:
   m_ObjectHideFlags: 0
@@ -3150,9 +3150,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1121479759}
-        m_TargetAssemblyTypeName: BackGroundMusicController, Assembly-CSharp
-        m_MethodName: SetAudio
+      - m_Target: {fileID: 1121479761}
+        m_TargetAssemblyTypeName: MusicController, Assembly-CSharp
+        m_MethodName: setMusicVolume
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

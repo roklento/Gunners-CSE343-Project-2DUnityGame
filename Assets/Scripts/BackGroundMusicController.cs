@@ -5,10 +5,18 @@ using UnityEngine.UI;
 
 public class BackGroundMusicController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    static BackGroundMusicController instance;
+    private void Awake()
     {
-        DontDestroyOnLoad(gameObject);    
+        if(instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
     public void SetAudio(float value)
     {
