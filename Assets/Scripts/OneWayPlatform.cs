@@ -7,7 +7,7 @@ public class OneWayPlatform : NetworkBehaviour
 
 {
     private Collider2D currentOneWayPlatform;
-    [SerializeField]private BoxCollider2D playerCollider;
+    [SerializeField]private CapsuleCollider2D playerCollider;
     // Start is called before the first frame update
 
     // Update is called once per frame

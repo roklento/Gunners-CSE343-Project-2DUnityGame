@@ -75,7 +75,6 @@ GameObject:
   - component: {fileID: 2361788345727023869}
   - component: {fileID: 2361788345727023809}
   - component: {fileID: 2361788345727023810}
-  - component: {fileID: 2361788345727023808}
   - component: {fileID: 2361788345727023815}
   - component: {fileID: 2361788345727023814}
   - component: {fileID: 2361788345727023813}
@@ -85,6 +84,7 @@ GameObject:
   - component: {fileID: -7081249291627921155}
   - component: {fileID: -6170426347898789036}
   - component: {fileID: -6339053271149428040}
+  - component: {fileID: 196759342853692383}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -197,7 +197,7 @@ MonoBehaviour:
   groundCheckLayers:
     serializedVersion: 2
     m_Bits: 55
-  groundCheckRaycastLength: 0.7
+  groundCheckRaycastLength: 0.82
 --- !u!50 &2361788345727023810
 Rigidbody2D:
   serializedVersion: 4
@@ -219,32 +219,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &2361788345727023808
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2361788345727023870}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: d3d7df396567ed54fb311b0a8f811019, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0016987994, y: 0.008719355}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.35, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 0.64, y: 0.64}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.21948494, y: 0.3498842}
-  m_EdgeRadius: 0
 --- !u!114 &2361788345727023815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba675c3deb2e7eb4c939140cb86f0cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCollider: {fileID: 2361788345727023808}
+  playerCollider: {fileID: 196759342853692383}
 --- !u!114 &2361788345727023813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,6 +370,24 @@ MonoBehaviour:
   colors:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 1, g: 0.09661572, b: 0, a: 1}
+  - {r: 0, g: 0.8210938, b: 1, a: 1}
+  - {r: 0.2621925, g: 1, b: 0, a: 1}
+--- !u!70 &196759342853692383
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2361788345727023870}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: d3d7df396567ed54fb311b0a8f811019, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.4, y: 0.4}
+  m_Direction: 0
 --- !u!1 &3152893625459319519
 GameObject:
   m_ObjectHideFlags: 0
