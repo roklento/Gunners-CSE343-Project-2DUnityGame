@@ -12,4 +12,9 @@ public class MapSelect : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Map2");
     }
+
+    public void Map3()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Map3");
+    }
 }
