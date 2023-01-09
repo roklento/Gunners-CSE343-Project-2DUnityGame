@@ -2,41 +2,79 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using TMPro;
 
 public class GameOver : NetworkBehaviour
 {
-    private NetworkVariable<bool> client0 = new NetworkVariable<bool>();
-    private NetworkVariable<bool> client1 = new NetworkVariable<bool>();
+    [SerializeField] private TextMeshProUGUI winPlayerName;
+    [SerializeField] private Canvas wonCanvas;
 
-
+    private bool isGameStart = false;
+    private void Awake()
+    {
+        Hide();
+    }
     public override void OnNetworkSpawn()
     {
-        if(IsServer)
-        {
-            Client0();
-            //client1.Value = NetworkManager.Singleton.ConnectedClients[].PlayerObject.GetComponent<Death>().isDead;
-            //NetworkManager.Singleton.ConnectedClients[1].PlayerObject.GetComponent<Death>()
-        }
+        if (!IsOwner) return;
     }
-
 
     void Update()
     {
-        if(OwnerClientId == 0)
+        if(IsServer)
         {
-            
-        }
+            if (LobbyManager.Instance.isGameStart)
+            {
+                Debug.Log("here");
 
-        Debug.Log(OwnerClientId);
-        Debug.Log(client0.Value);
-        //Debug.Log(OwnerClientId);
-        //Debug.Log(client1.Value);
+                StartCoroutine(GameStart());
+
+                Debug.Log(isGameStart);
+                if(isGameStart)
+                {
+                    if (NetworkManager.Singleton.ConnectedClientsList[0].PlayerObject != null && NetworkManager.Singleton.ConnectedClientsList[1].PlayerObject == null)
+                    {
+                        Show();
+                        winPlayerName.text = "Player 0";
+                        Debug.Log("player 0");
+                    }
+                    else if (NetworkManager.Singleton.ConnectedClientsList[0].PlayerObject == null && NetworkManager.Singleton.ConnectedClientsList[1].PlayerObject != null)
+                    {
+                        Show();
+                        winPlayerName.text = "Player 1";
+                        Debug.Log("player 1");
+                    }
+                    /*else if (NetworkManager.Singleton.ConnectedClientsList[0].PlayerObject == null && NetworkManager.Singleton.ConnectedClientsList[1].PlayerObject == null &&
+                        NetworkManager.Singleton.ConnectedClientsList[2].PlayerObject != null && NetworkManager.Singleton.ConnectedClientsList[3].PlayerObject == null)
+                    {
+                        winPlayerName.text = "Player 2";
+                        Debug.Log("win player2");
+                    }
+                    else if (NetworkManager.Singleton.ConnectedClientsList[0].PlayerObject == null && NetworkManager.Singleton.ConnectedClientsList[1].PlayerObject == null &&
+                        NetworkManager.Singleton.ConnectedClientsList[2].PlayerObject == null && NetworkManager.Singleton.ConnectedClientsList[3].PlayerObject != null)
+                    {
+                        winPlayerName.text = "Player 3";
+                        Debug.Log("win player3");
+                    }*/
+                }
+            }
+        }
+    }
+    private void Hide()
+    {
+        wonCanvas.gameObject.SetActive(false);
     }
 
-    bool Client0()
+    private void Show()
     {
-        client0.Value = NetworkManager.Singleton.ConnectedClients[NetworkManager.Singleton.LocalClientId].PlayerObject.GetComponent<Death>().isDead;
-        return client0.Value;
+        wonCanvas.gameObject.SetActive(true);
+    }
+
+    IEnumerator GameStart()
+    {
+        float timer = 10f;
+        yield return new WaitForSeconds(timer);
+        isGameStart = true;
     }
 
 }

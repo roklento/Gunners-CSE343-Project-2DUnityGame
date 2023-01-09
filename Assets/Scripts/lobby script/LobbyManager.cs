@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class LobbyManager : MonoBehaviour {
 
-
+    public bool isGameStart = false;
     public static LobbyManager Instance { get; private set; }
 
 
@@ -369,6 +369,7 @@ public class LobbyManager : MonoBehaviour {
     }
     public async void StartGame()
     {
+        isGameStart = true;
         if(IsLobbyHost())
         {
             try

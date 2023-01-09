@@ -9,7 +9,7 @@ public class sceneController : MonoBehaviour
 
     public void LoadPlayScreen()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Play");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MapSelect");
     }
     public void LoadStartScreen()
     {

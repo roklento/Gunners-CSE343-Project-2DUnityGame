@@ -24,7 +24,6 @@ public class PlayerName : NetworkBehaviour
     }
 
     private NetworkVariable<NetworkString> playerName = new NetworkVariable<NetworkString>();
-    private string tempString;
     private bool overlaySet = false;
 
     public override void OnNetworkSpawn()

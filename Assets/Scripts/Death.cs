@@ -47,27 +47,24 @@ public class Death : NetworkBehaviour
                 lives--;
                 textMesh.text = lives.ToString();
             }*/
-                Debug.Log("Here");
-                lives--;
-                textMesh.text = lives.ToString();
-                Respawn();
+            Respawn();
+            textMesh.text = lives.ToString();     
 
         }
     }
-
     void Respawn()
     {
         if (lives > 0)
         {
+            lives--;
             transform.position = spawnPoint;
         }
         else
-        {
-            
+        { 
             if(IsServer)
             {
                 isDead = true;
-                //Destroy(gameObject);
+                Destroy(gameObject);
             }
 
             else

@@ -15,6 +15,18 @@ EditorBuildSettings:
     path: Assets/Scenes/campaignScene.unity
     guid: d5d288e2076b82a4ea90eccec0651bf0
   - enabled: 1
-    path: Assets/Scenes/Play.unity
+    path: Assets/Scenes/MapSelect.unity
+    guid: cad29a4a9d15d78469ba1f8656fa0c5e
+  - enabled: 1
+    path: Assets/Scenes/Map1.unity
+    guid: 05b7feca200914648a984a6adc367ec9
+  - enabled: 1
+    path: Assets/Scenes/Map2.unity
+    guid: a08a0bbbd15cf1f4381fef02167e13fa
+  - enabled: 1
+    path: Assets/Scenes/Map3.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/WinScene.unity
+    guid: e9c0e0a7bb233094ab841eb1b8375d05
   m_configObjects: {}
