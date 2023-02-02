@@ -9,6 +9,8 @@ public class GameOver : NetworkBehaviour
     [SerializeField] private TextMeshProUGUI winPlayerName;
     [SerializeField] private Canvas wonCanvas;
 
+    //private NetworkVariable<NetworkString> wonPlayer = new NetworkVariable<NetworkString>();
+
     private bool isGameStart = false;
     private void Awake()
     {
@@ -35,6 +37,7 @@ public class GameOver : NetworkBehaviour
                     {
                         Show();
                         winPlayerName.text = "Player 0";
+                        //NetworkManager.Singleton.
                     }
                     else if (NetworkManager.Singleton.ConnectedClientsList[0].PlayerObject == null && NetworkManager.Singleton.ConnectedClientsList[1].PlayerObject != null
                         && NetworkManager.Singleton.ConnectedClientsList[2].PlayerObject == null && NetworkManager.Singleton.ConnectedClientsList[3].PlayerObject == null)
@@ -46,7 +49,7 @@ public class GameOver : NetworkBehaviour
                         NetworkManager.Singleton.ConnectedClientsList[2].PlayerObject != null && NetworkManager.Singleton.ConnectedClientsList[3].PlayerObject == null)
                     {
                         Show();
-                        winPlayerName.text = "Player 1";
+                        winPlayerName.text = "Player 2";
 
                     }
                     else if (NetworkManager.Singleton.ConnectedClientsList[0].PlayerObject == null && NetworkManager.Singleton.ConnectedClientsList[1].PlayerObject == null &&
